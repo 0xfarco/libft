@@ -6,7 +6,7 @@
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 11:20:21 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:00:15 by fcholakk         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:58:10 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_handle_format(char specifier, va_list *args)
 		return (ft_print_signed(va_arg(*args, int)));
 	if (specifier == 'u')
 		return (ft_print_unsigned(va_arg(*args, unsigned int)));
+	if (specifier == 'f')
+		return (ft_print_double(va_arg(*args, double)));
 	if (specifier == 'x' || specifier == 'X')
 		return (ft_print_hex(va_arg(*args, unsigned int), specifier == 'X'));
 	if (specifier == '%')
