@@ -1,50 +1,49 @@
-NAME		= libftextra.a
+NAME		= libft.a
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -I include
 AR			= ar rcs
 
-LIBFT_DIR	= ./libft
-LIBFT		= libft.a
+SRC_DIR = src
+OBJ_DIR = obj
 
-FT_PRINTF_DIR	= ./ft_printf
-FT_PRINTF	= libftprintf.a
+LIBFT_SRCS	= $(SRC_DIR)/ft_isalpha.c $(SRC_DIR)/ft_isdigit.c $(SRC_DIR)/ft_isalnum.c $(SRC_DIR)/ft_isascii.c $(SRC_DIR)/ft_isprint.c \
+		  $(SRC_DIR)/ft_strlen.c $(SRC_DIR)/ft_memset.c $(SRC_DIR)/ft_bzero.c $(SRC_DIR)/ft_memcpy.c $(SRC_DIR)/ft_memmove.c \
+		  $(SRC_DIR)/ft_strlcpy.c $(SRC_DIR)/ft_strlcat.c $(SRC_DIR)/ft_toupper.c $(SRC_DIR)/ft_tolower.c $(SRC_DIR)/ft_strchr.c \
+		  $(SRC_DIR)/ft_strrchr.c $(SRC_DIR)/ft_strncmp.c $(SRC_DIR)/ft_memchr.c $(SRC_DIR)/ft_memcmp.c $(SRC_DIR)/ft_strnstr.c \
+		  $(SRC_DIR)/ft_atoi.c $(SRC_DIR)/ft_calloc.c $(SRC_DIR)/ft_strdup.c \
+		  $(SRC_DIR)/ft_substr.c $(SRC_DIR)/ft_strjoin.c $(SRC_DIR)/ft_strtrim.c $(SRC_DIR)/ft_split.c $(SRC_DIR)/ft_itoa.c \
+		  $(SRC_DIR)/ft_strmapi.c $(SRC_DIR)/ft_striteri.c $(SRC_DIR)/ft_putchar_fd.c $(SRC_DIR)/ft_putstr_fd.c \
+		  $(SRC_DIR)/ft_putendl_fd.c $(SRC_DIR)/ft_putnbr_fd.c \
+		  $(SRC_DIR)/ft_lstnew.c $(SRC_DIR)/ft_lstadd_front.c $(SRC_DIR)/ft_lstsize.c $(SRC_DIR)/ft_lstlast.c \
+		  $(SRC_DIR)/ft_lstadd_back.c $(SRC_DIR)/ft_lstdelone.c $(SRC_DIR)/ft_lstclear.c $(SRC_DIR)/ft_lstiter.c \
+		  $(SRC_DIR)/ft_lstmap.c
 
-GET_NEXT_LINE_DIR = ./get_next_line
-GET_NEXT_LINE = libgnl.a
+FT_PRINTF_SRCS = $(SRC_DIR)/ft_print_char.c $(SRC_DIR)/ft_print_string.c $(SRC_DIR)/ft_print_unsigned.c \
+			  $(SRC_DIR)/ft_print_signed.c $(SRC_DIR)/ft_print_hex.c $(SRC_DIR)/ft_print_pointer.c \
+			  $(SRC_DIR)/ft_print_double.c $(SRC_DIR)/ft_handle_format.c $(SRC_DIR)/ft_printf.c
+
+GNL_SRCS = $(SRC_DIR)/get_next_line.c $(SRC_DIR)/get_next_line_utils.c
+GNL_BONUS_SRCS = $(SRC_DIR)/get_next_line_bonus.c $(SRC_DIR)/get_next_line_utils_bonus.c
+
+SRCS = $(LIBFT_SRCS) $(FT_PRINTF_SRCS) $(GNL_SRCS)
+
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+$(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
-$(FT_PRINTF):
-	$(MAKE) -C $(FT_PRINTF_DIR)
-	$(AR) $(NAME) $(OBJS)
-
-$(GET_NEXT_LINE):
-	$(MAKE) -C $(GET_NEXT_LINE_DIR)
-	$(AR) $(NAME) $(OBJS)
-
-$(NAME): $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE)
-	cp $(LIBFT) .
-	cp $(FT_PRINTF) .
-	cp $(GET_NEXT_LINE) .
-	$(AR) $(NAME) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(LIBFT_DIR)/$(LIBFT) $(FT_PRINTF_DIR)/$(FT_PRINTF) $(GET_NEXT_LINE)/$(GET_NEXT_LINE)
-	rm -f $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(FT_PRINTF_DIR) clean
-	$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(FT_PRINTF_DIR) fclean
-	$(MAKE) -C $(GET_NEXT_LINE_DIR) fclean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

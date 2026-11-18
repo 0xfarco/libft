@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/24 11:20:02 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:05:50 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/24 11:20:16 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:16:18 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_string(char *s)
+int	ft_print_char(char c)
 {
-	int	count;
-
-	if (!s)
-		s = "(null)";
-	count = 0;
-	while (s[count])
-	{
-		ft_print_char(s[count]);
-		count++;
-	}
-	return (count);
+	write(1, &c, 1);
+	return (1);
 }

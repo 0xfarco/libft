@@ -6,11 +6,11 @@
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 11:20:13 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:00:22 by fcholakk         ###   ########.fr       */
+/*   Updated: 2026/11/18 09:11:42 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_hex(unsigned long n, int uppercase)
 {

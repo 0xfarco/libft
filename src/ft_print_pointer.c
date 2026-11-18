@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/24 18:01:08 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:06:28 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/24 11:20:09 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:11:47 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_print_pointer(void *ptr)
 {
-	va_list	args;
-	int		count;
+	int	count;
 
-	if (!format)
-		return (-1);
-	count = 0;
-	va_start(args, format);
-	while (*format)
-	{
-		if (*format == '%' && format[1])
-		{
-			format++;
-			count += ft_handle_format(*format, &args);
-		}
-		else if (*format != '%')
-			count += ft_print_char(*format);
-		format++;
-	}
-	va_end(args);
+	if (!ptr)
+		return (ft_print_string("(nil)"));
+	count = ft_print_string("0x");
+	count += ft_print_hex((unsigned long)ptr, 0);
 	return (count);
 }

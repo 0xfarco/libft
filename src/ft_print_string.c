@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_signed.c                                  :+:      :+:    :+:   */
+/*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/24 11:20:05 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:00:25 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/24 11:20:02 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:11:58 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_signed(int n)
+int	ft_print_string(char *s)
 {
-	unsigned int	num;
-	int				count;
+	int	count;
 
+	if (!s)
+		s = "(null)";
 	count = 0;
-	if (n < 0)
+	while (s[count])
 	{
-		count += ft_print_char('-');
-		num = -(unsigned int)n;
+		ft_print_char(s[count]);
+		count++;
 	}
-	else
-		num = (unsigned int)n;
-	return (count + ft_print_unsigned(num));
+	return (count);
 }

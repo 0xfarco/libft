@@ -6,7 +6,7 @@
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:41:00 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/21 09:13:50 by fcholakk         ###   ########.fr       */
+/*   Updated: 2026/11/18 09:16:44 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2048
+# endif
+
+# define LINE_CAP 64
 
 typedef struct s_list
 {
@@ -22,7 +29,21 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-/* Part 1 */
+typedef struct s_state
+{
+	char	*buf;
+	char	*ptr;
+	ssize_t	left;
+}	t_state;
+
+typedef struct s_line
+{
+	char	*data;
+	size_t	len;
+	size_t	cap;
+}	t_line;
+
+/* libft */
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -47,7 +68,6 @@ int				ft_atoi(const char *nptr);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strdup(const char *s);
 
-/* Part 2 */
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
@@ -60,7 +80,6 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
-/* Part 3 */
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 unsigned int	ft_lstsize(t_list *lst);
@@ -72,4 +91,19 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst,
 					void *(*f)(void *), void (*del)(void *));
 
+/* ft_printf */
+int				ft_printf(const char *format, ...);
+int				ft_handle_format(char specifier, va_list *args);
+int				ft_print_char(char c);
+int				ft_print_string(char *s);
+int				ft_print_unsigned(unsigned int n);
+int				ft_print_signed(int n);
+int				ft_print_double(double n);
+int				ft_print_hex(unsigned long n, int uppercase);
+int				ft_print_pointer(void *ptr);
+
+/* get_next_line */
+char			*get_next_line(int fd);
+int				push_char(t_line *l, char c);
+char			*finish_line(t_line *l);
 #endif

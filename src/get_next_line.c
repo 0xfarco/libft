@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/27 15:44:49 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/11/03 08:54:09 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/27 15:44:25 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:12:42 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
 static void	reset(t_state *st)
 {
@@ -57,26 +57,26 @@ static int	fill(t_state *st, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_state	st[MAX_FD];
+	static t_state	st;
 	t_line			l;
 	int				ready;
 	char			c;
 
-	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!init_line(&l))
 		return (NULL);
 	while (1)
 	{
-		ready = fill(&st[fd], fd);
+		ready = fill(&st, fd);
 		if (ready < 0)
-			return (fail(&st[fd], &l));
+			return (fail(&st, &l));
 		if (ready == 0)
-			return (reset(&st[fd]), finish_line(&l));
-		c = *st[fd].ptr++;
-		st[fd].left--;
+			return (reset(&st), finish_line(&l));
+		c = *st.ptr++;
+		st.left--;
 		if (!push_char(&l, c))
-			return (fail(&st[fd], &l));
+			return (fail(&st, &l));
 		if (c == '\n')
 			return (finish_line(&l));
 	}

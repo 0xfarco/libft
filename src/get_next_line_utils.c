@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/27 15:44:43 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/11/03 08:54:11 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/27 15:44:39 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:12:49 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	unsigned char		*d;
-	const unsigned char	*s;
-	size_t				i;
-
-	if (!dst && !src)
-		return (NULL);
-	d = (unsigned char *)dst;
-	s = (const unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dst);
-}
+#include "libft.h"
 
 int	push_char(t_line *l, char c)
 {

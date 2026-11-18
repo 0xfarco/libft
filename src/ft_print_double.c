@@ -6,11 +6,11 @@
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 18:57:15 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/11/17 19:04:43 by fcholakk         ###   ########.fr       */
+/*   Updated: 2026/11/18 09:18:26 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_double(double n)
 {

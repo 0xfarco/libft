@@ -6,11 +6,11 @@
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 11:20:21 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/11/17 18:58:10 by fcholakk         ###   ########.fr       */
+/*   Updated: 2026/11/18 09:17:08 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_handle_format(char specifier, va_list *args)
 {

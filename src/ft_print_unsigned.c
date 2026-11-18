@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcholakk <fcholakk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/24 11:20:16 by fcholakk          #+#    #+#             */
-/*   Updated: 2026/10/24 18:05:34 by fcholakk         ###   ########.fr       */
+/*   Created: 2026/10/24 11:19:59 by fcholakk          #+#    #+#             */
+/*   Updated: 2026/11/18 09:12:02 by fcholakk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_char(char c)
+int	ft_print_unsigned(unsigned int n)
 {
-	write(1, &c, 1);
-	return (1);
+	int	count;
+
+	count = 0;
+	if (n >= 10)
+		count += ft_print_unsigned(n / 10);
+	count += ft_print_char('0' + n % 10);
+	return (count);
 }
